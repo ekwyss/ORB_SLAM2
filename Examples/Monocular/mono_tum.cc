@@ -23,6 +23,7 @@
 #include<algorithm>
 #include<fstream>
 #include<chrono>
+#include"../../include/Osmap.h"
 
 #include<opencv2/core/core.hpp>
 
@@ -51,6 +52,9 @@ int main(int argc, char **argv)
 
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
     ORB_SLAM2::System SLAM(argv[1],argv[2],ORB_SLAM2::System::MONOCULAR,true);
+
+    //construct osmap object
+    ORB_SLAM2::Osmap osmap = ORB_SLAM2::Osmap(SLAM);
 
     // Vector for tracking time statistics
     vector<float> vTimesTrack;
@@ -103,7 +107,20 @@ int main(int argc, char **argv)
 
         if(ttrack<T)
             usleep((T-ttrack)*1e6);
+        // if (ni == 300) {
+        //     // cout <<"wait"<<endl;
+        //     // getchar();
+        //     osmap.mapLoad("myFirstMap.yaml");
+        //     cout << "Give time for map to load..." << endl;
+        //     getchar();
+        // }
     }
+    // cout <<"wait"<<endl;
+    // getchar();
+    // osmap.mapLoad("myFirstMap.yaml");
+    // cout << "Give time for map to load..." << endl;
+    // getchar();
+
 
     // Stop all threads
     SLAM.Shutdown();
@@ -121,6 +138,10 @@ int main(int argc, char **argv)
 
     // Save camera trajectory
     SLAM.SaveKeyFrameTrajectoryTUM("KeyFrameTrajectory.txt");
+    // cout << "saving map to filename: myFirstMap" << endl;
+    // osmap.mapSave("myFirstMap");
+    // cout << "Give time for map to save..." << endl;
+    // getchar();
 
     return 0;
 }

@@ -38,12 +38,15 @@ endif()
 
 find_package(Eigen3 3.1.0 REQUIRED)
 find_package(Pangolin REQUIRED)
+find_package(Protobuf REQUIRED)
 
 include_directories(
 ${PROJECT_SOURCE_DIR}
 ${PROJECT_SOURCE_DIR}/include
 ${EIGEN3_INCLUDE_DIR}
 ${Pangolin_INCLUDE_DIRS}
+${CMAKE_CURRENT_BINARY_DIR}
+${PROTOBUF_INCLUDE_DIR}
 )
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
@@ -68,6 +71,8 @@ src/KeyFrameDatabase.cc
 src/Sim3Solver.cc
 src/Initializer.cc
 src/Viewer.cc
+src/osmap.pb.cc
+src/Osmap.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}
@@ -76,6 +81,8 @@ ${EIGEN3_LIBS}
 ${Pangolin_LIBRARIES}
 ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/lib/libDBoW2.so
 ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
+${PROTOBUF_LIBRARIES}
+/usr/local/lib/libprotobuf.a
 )
 
 # Build examples

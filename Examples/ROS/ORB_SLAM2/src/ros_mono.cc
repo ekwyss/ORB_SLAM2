@@ -30,6 +30,7 @@
 #include<opencv2/core/core.hpp>
 
 #include"../../../include/System.h"
+#include"../../../include/Osmap.h"
 
 using namespace std;
 
@@ -57,6 +58,10 @@ int main(int argc, char **argv)
 
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
     ORB_SLAM2::System SLAM(argv[1],argv[2],ORB_SLAM2::System::MONOCULAR,true);
+    ORB_SLAM2::Osmap osmap = ORB_SLAM2::Osmap(SLAM);
+    cout << "Give time for SLAM to initialize..." << endl;
+    getchar();
+    osmap.mapLoad("myFirstMap.yaml");
 
     ImageGrabber igb(&SLAM);
 
