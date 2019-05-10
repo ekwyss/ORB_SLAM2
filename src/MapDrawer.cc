@@ -259,26 +259,14 @@ void MapDrawer::GetCurrentOpenGLCameraMatrix(pangolin::OpenGlMatrix &M)
         M.SetIdentity();
 }
 
+//TODO: transform label coordinates from camera reference to world frame.
+//      update relative to pose
 void MapDrawer::DrawLabels(std::list<Label> *LabelQueue) {
 
     GLboolean gl_blend_enabled;
     glGetBooleanv(GL_BLEND, &gl_blend_enabled);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-    // pangolin::GlText txt = glFont.Text(label.c_str());
-    // txt.Draw(x,y,z);
-    // pangolin::GlFont::I().Text(
-        // label,
-        // 1,1).DrawWindow()
-    // Label l;
-    // while (!LabelQueue->empty()) {
-    //     l = LabelQueue->top();
-    //     cout << "Drawin label for " << l.labelStr << "at pos " << l.x << "," << l.y << "," << l.z << endl;
-    //     pangolin::GlFont::I().Text(l.labelStr).Draw(l.x,l.y,l.z);
-    //     LabelQueue->pop();
-
-    // }
 
     // cout << "List size: " << LabelQueue->size() << endl;
     std::list<Label>::iterator it;

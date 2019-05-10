@@ -88,6 +88,8 @@ protected:
     bool CheckNewKeyFrames();
     void ProcessNewKeyFrame();
     void CreateNewMapPoints();
+    void drawBox(string name, float x, float y, float z);
+
 
     void MapPointCulling();
     void SearchInNeighbors();

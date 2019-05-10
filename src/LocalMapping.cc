@@ -150,6 +150,65 @@ bool LocalMapping::CheckNewKeyFrames()
     return(!mlNewKeyFrames.empty());
 }
 
+// void LocalMapping::drawBox(box b, detection *dets, image im, int i) {
+//     int left  = (b.x-b.w/2.)*im.w;
+//     int right = (b.x+b.w/2.)*im.w;
+//     int top   = (b.y-b.h/2.)*im.h;
+//     int bot   = (b.y+b.h/2.)*im.h;
+
+//     if(left < 0) left = 0;
+//     if(right > im.w-1) right = im.w-1;
+//     if(top < 0) top = 0;
+//     if(bot > im.h-1) bot = im.h-1;
+//     // cout << "box coord for " << i << ": " << ((top+bot)/2) << "," << ((left+right)/2) << endl;
+//     // cout << "num classes: " << l.classes << endl;
+//     // cout << "num classes: " << dets[i].classes << endl;
+//     // unique_lock<mutex> lock(mMutexLabelQueue);
+//     for (int j = 0; j < dets[i].classes; ++j) {
+//         if (strcmp(names[j], "person") != 0)
+//             if (dets[i].prob[j] > 0.75) {
+//                 int row = (top+bot)/2;
+//                 int col = (left+right)/2;
+//                 char* name = names[j];
+//                 float x = temp_cloud->at(row,col).x;
+//                 float y = temp_cloud->at(row,col).y;
+//                 float z = temp_cloud->at(row,col).z;
+//                 std::list<Label>::iterator it;
+//                 for (it = LabelQueue->begin(); it != LabelQueue->end(); ++it) {
+//                     if (strcmp(it->labelStr, name) == 0) {
+//                         if (sqrt(pow(x-it->x,2) + pow(y-it->y,2 + pow(z-it->z,2))) < 0.01)
+//                             return;
+//                     }
+
+//                 }
+//                 LabelQueue->push_back({name,x,y,z});
+
+//                 // int pcIndex = row * im.w + col;
+//                 // cout << "class: " << names[j] << ", prob: " << dets[i].prob[j] << endl;
+//                 // cout << "Prepush: " << LabelQueue->size() << endl;
+//                 // LabelQueue->push_back({names[j], temp_cloud->at(col,row).x,temp_cloud->at(col,row).y,temp_cloud->at(col,row).z});
+//                 // cout << "Postpush: " << LabelQueue->size() << endl;
+//                 // cout << names[j] << " at pixel " << row << "," << col << " with prob " << dets[i].prob[j] << " corresponds to pointcloud coord " << temp_cloud->at(col,row).x << "," << temp_cloud->at(col,row).y << "," << temp_cloud->at(col,row).z << endl;
+//                 // mpMapDrawer->DrawLabel(names[j], temp_cloud->at(col,row).x, temp_cloud->at(col,row).y, temp_cloud->at(col,row).z);
+
+//             }
+//         }
+// }
+
+void LocalMapping::drawBox(string name, float x, float y, float z) {
+
+    for (auto const& l : *LabelQueue){
+        if (l.labelStr == name) {
+            // return;
+            //find adequate distance value to avoid dups
+            if (sqrt(pow(x-l.x,2) + pow(y-l.y,2 + pow(z-l.z,2))) < 0.5) {
+                return;
+            }
+        }
+    }
+    LabelQueue->push_back({name,x,y,z});
+}
+
 void LocalMapping::ProcessNewKeyFrame()
 {
     {
@@ -158,31 +217,6 @@ void LocalMapping::ProcessNewKeyFrame()
         mlNewKeyFrames.pop_front();
     }
 
-    //run new keyframe through yolo
-    //need to do this or can just run the mat through yolo?
-    // imwrite("keyframe.jpg",mpCurrentKeyFrame->imGray);
-    //Image cv2::mat_to_image(Mat)
-    // cv::imshow("keyframe", mpCurrentKeyFrame->imGrayMat);
-    // cv::imwrite("keyframe.jpg", mpCurrentKeyFrame->imGrayMat);
-
-    // cout <<"here1" << endl;
-
- ////   // image im = mat_to_image(mpCurrentKeyFrame->imRGBMat);
-    // image im = load_image_cv((char*)"keyframe.jpg",3);
-    // cv::cvtColor(mpCurrentKeyFrame->imGrayMat, out, cv::COLOR_GRAY2BGR)
-    // cout << im.c << endl;
-//    image sized = letterbox_image(im, net->w, net->h);
-//    float *X = sized.data;
-    // cout << net->w << endl;
-////    // network_predict_image(net,im);
-//    network_predict(net,X);
-    // network_predict_image(net,im);
-    // int nboxes =  0;
-    // cout <<"here4" << endl;
-    // detection *dets = get_network_boxes(net, im.w, im.h, .5, .5, 0, 1, &nboxes);
-    // cout <<"here5" << endl;
-    // cout << "x,y,w,h: " << dets->bbox.x << ", " << dets->bbox.y << ", " << dets->bbox.w << ", " << dets->bbox.h << endl;
-    //export centers of bounding boxes along with labels to map drawer
     // cout << mpCurrentKeyFrame->msgPC->height << endl;
     pcl::PCLPointCloud2 pcl_pc2;
     pcl_conversions::toPCL(*(mpCurrentKeyFrame->msgPC), pcl_pc2);
@@ -190,7 +224,7 @@ void LocalMapping::ProcessNewKeyFrame()
     pcl::fromPCLPointCloud2(pcl_pc2,*temp_cloud);
     // pcl::fromROSMsg(mpCurrentKeyFrame->msgPC, )
     sensor_msgs::PointCloud2ConstPtr pc = mpCurrentKeyFrame->msgPC;
-    cout << keyCount << endl;
+    // cout << keyCount << endl;
     if (keyCount > 0) {
         image im = mat_to_image(mpCurrentKeyFrame->imRGBMat);
         network_predict_image(net,im);
@@ -204,6 +238,7 @@ void LocalMapping::ProcessNewKeyFrame()
             int right = (b.x+b.w/2.)*im.w;
             int top   = (b.y-b.h/2.)*im.h;
             int bot   = (b.y+b.h/2.)*im.h;
+            // cout << left << ","<< right << ","<< top << ","<< bot << endl;
 
             if(left < 0) left = 0;
             if(right > im.w-1) right = im.w-1;
@@ -214,23 +249,18 @@ void LocalMapping::ProcessNewKeyFrame()
             // cout << "num classes: " << dets[i].classes << endl;
             // unique_lock<mutex> lock(mMutexLabelQueue);
             for (int j = 0; j < dets[i].classes; ++j) {
-                if (dets[i].prob[j] > 0.75) {
-                    int row = (top+bot)/2;
-                    int col = (left+right)/2;
-                    // int pcIndex = row * im.w + col;
-                    // cout << "class: " << names[j] << ", prob: " << dets[i].prob[j] << endl;
-                    // cout << "Prepush: " << LabelQueue->size() << endl;
-                    if (names[j] != (char*)"person")
-                        LabelQueue->push_back({names[j], temp_cloud->at(col,row).x,temp_cloud->at(col,row).y,temp_cloud->at(col,row).z});
-                    // cout << "Postpush: " << LabelQueue->size() << endl;
-                    // cout << names[j] << " at pixel " << row << "," << col << " with prob " << dets[i].prob[j] << " corresponds to pointcloud coord " << temp_cloud->at(col,row).x << "," << temp_cloud->at(col,row).y << "," << temp_cloud->at(col,row).z << endl;
-                    // mpMapDrawer->DrawLabel(names[j], temp_cloud->at(col,row).x, temp_cloud->at(col,row).y, temp_cloud->at(col,row).z);
-
+                if (strcmp(names[j], "person") != 0) {
+                    if (dets[i].prob[j] > 0.75) {
+                        int col = (top+bot)/2;
+                        int row = (left+right)/2;
+                        char* name = names[j];
+                        float x = temp_cloud->at(row,col).x;
+                        float y = temp_cloud->at(row,col).y;
+                        float z = temp_cloud->at(row,col).z;
+                        drawBox(name, x, y, z);
+                        // LabelQueue->push_back({name,x,y,z});
+                    }
                 }
-            // unique_lock<mutex> unlock(mMutexLabelQueue);
-                //write function in MapDrawer to draw labels in space, pass mapdrawer object to this class
-                //like in viewer, for detected objects call written func with class label and coord
-                //maybe make threshhold very high to prevent exploding number of labels
             }
         }
         // free_detections(dets, nboxes);
