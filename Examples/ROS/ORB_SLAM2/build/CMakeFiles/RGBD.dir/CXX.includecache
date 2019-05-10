@@ -29,6 +29,26 @@ opencv2/core/core.hpp
 -
 ../../../include/System.h
 /home/eric/catkin_ws/src/ORB_SLAM2/Examples/include/System.h
+darknet.h
+-
+
+/home/eric/catkin_ws/src/dependencies/darknet/include/darknet.h
+stdlib.h
+-
+stdio.h
+-
+string.h
+-
+pthread.h
+-
+cuda_runtime.h
+/home/eric/catkin_ws/src/dependencies/darknet/include/cuda_runtime.h
+curand.h
+/home/eric/catkin_ws/src/dependencies/darknet/include/curand.h
+cublas_v2.h
+/home/eric/catkin_ws/src/dependencies/darknet/include/cublas_v2.h
+cudnn.h
+/home/eric/catkin_ws/src/dependencies/darknet/include/cudnn.h
 
 /opt/ros/kinetic/include/cv_bridge/cv_bridge.h
 sensor_msgs/Image.h

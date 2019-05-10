@@ -3,6 +3,7 @@
 
 CMakeFiles/RGBD.dir/src/ros_rgbd.cc.o
  /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_rgbd.cc
+ /home/eric/catkin_ws/src/dependencies/darknet/include/darknet.h
  /opt/ros/kinetic/include/cv_bridge/cv_bridge.h
  /opt/ros/kinetic/include/message_filters/connection.h
  /opt/ros/kinetic/include/message_filters/macros.h

@@ -124,45 +124,6 @@ mono_euroc/fast:
 .PHONY : mono_euroc/fast
 
 #=============================================================================
-# Target rules for targets named mono_kitti
-
-# Build rule for target.
-mono_kitti: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 mono_kitti
-.PHONY : mono_kitti
-
-# fast build rule for target.
-mono_kitti/fast:
-	$(MAKE) -f CMakeFiles/mono_kitti.dir/build.make CMakeFiles/mono_kitti.dir/build
-.PHONY : mono_kitti/fast
-
-#=============================================================================
-# Target rules for targets named mono_tum
-
-# Build rule for target.
-mono_tum: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 mono_tum
-.PHONY : mono_tum
-
-# fast build rule for target.
-mono_tum/fast:
-	$(MAKE) -f CMakeFiles/mono_tum.dir/build.make CMakeFiles/mono_tum.dir/build
-.PHONY : mono_tum/fast
-
-#=============================================================================
-# Target rules for targets named ORB_SLAM2
-
-# Build rule for target.
-ORB_SLAM2: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ORB_SLAM2
-.PHONY : ORB_SLAM2
-
-# fast build rule for target.
-ORB_SLAM2/fast:
-	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/build
-.PHONY : ORB_SLAM2/fast
-
-#=============================================================================
 # Target rules for targets named rgbd_tum
 
 # Build rule for target.
@@ -174,6 +135,19 @@ rgbd_tum: cmake_check_build_system
 rgbd_tum/fast:
 	$(MAKE) -f CMakeFiles/rgbd_tum.dir/build.make CMakeFiles/rgbd_tum.dir/build
 .PHONY : rgbd_tum/fast
+
+#=============================================================================
+# Target rules for targets named mono_kitti
+
+# Build rule for target.
+mono_kitti: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mono_kitti
+.PHONY : mono_kitti
+
+# fast build rule for target.
+mono_kitti/fast:
+	$(MAKE) -f CMakeFiles/mono_kitti.dir/build.make CMakeFiles/mono_kitti.dir/build
+.PHONY : mono_kitti/fast
 
 #=============================================================================
 # Target rules for targets named stereo_kitti
@@ -200,6 +174,32 @@ stereo_euroc: cmake_check_build_system
 stereo_euroc/fast:
 	$(MAKE) -f CMakeFiles/stereo_euroc.dir/build.make CMakeFiles/stereo_euroc.dir/build
 .PHONY : stereo_euroc/fast
+
+#=============================================================================
+# Target rules for targets named ORB_SLAM2
+
+# Build rule for target.
+ORB_SLAM2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ORB_SLAM2
+.PHONY : ORB_SLAM2
+
+# fast build rule for target.
+ORB_SLAM2/fast:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/build
+.PHONY : ORB_SLAM2/fast
+
+#=============================================================================
+# Target rules for targets named mono_tum
+
+# Build rule for target.
+mono_tum: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mono_tum
+.PHONY : mono_tum
+
+# fast build rule for target.
+mono_tum/fast:
+	$(MAKE) -f CMakeFiles/mono_tum.dir/build.make CMakeFiles/mono_tum.dir/build
+.PHONY : mono_tum/fast
 
 Examples/Monocular/mono_euroc.o: Examples/Monocular/mono_euroc.cc.o
 
@@ -903,6 +903,33 @@ src/Viewer.cc.s:
 	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Viewer.cc.s
 .PHONY : src/Viewer.cc.s
 
+src/image_opencv.o: src/image_opencv.cpp.o
+
+.PHONY : src/image_opencv.o
+
+# target to build an object file
+src/image_opencv.cpp.o:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/image_opencv.cpp.o
+.PHONY : src/image_opencv.cpp.o
+
+src/image_opencv.i: src/image_opencv.cpp.i
+
+.PHONY : src/image_opencv.i
+
+# target to preprocess a source file
+src/image_opencv.cpp.i:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/image_opencv.cpp.i
+.PHONY : src/image_opencv.cpp.i
+
+src/image_opencv.s: src/image_opencv.cpp.s
+
+.PHONY : src/image_opencv.s
+
+# target to generate assembly for a file
+src/image_opencv.cpp.s:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/image_opencv.cpp.s
+.PHONY : src/image_opencv.cpp.s
+
 src/osmap.pb.o: src/osmap.pb.cc.o
 
 .PHONY : src/osmap.pb.o
@@ -939,12 +966,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... mono_euroc"
-	@echo "... mono_kitti"
-	@echo "... mono_tum"
-	@echo "... ORB_SLAM2"
 	@echo "... rgbd_tum"
+	@echo "... mono_kitti"
 	@echo "... stereo_kitti"
 	@echo "... stereo_euroc"
+	@echo "... ORB_SLAM2"
+	@echo "... mono_tum"
 	@echo "... Examples/Monocular/mono_euroc.o"
 	@echo "... Examples/Monocular/mono_euroc.i"
 	@echo "... Examples/Monocular/mono_euroc.s"
@@ -1023,6 +1050,9 @@ help:
 	@echo "... src/Viewer.o"
 	@echo "... src/Viewer.i"
 	@echo "... src/Viewer.s"
+	@echo "... src/image_opencv.o"
+	@echo "... src/image_opencv.i"
+	@echo "... src/image_opencv.s"
 	@echo "... src/osmap.pb.o"
 	@echo "... src/osmap.pb.i"
 	@echo "... src/osmap.pb.s"

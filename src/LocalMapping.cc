@@ -22,16 +22,41 @@
 #include "LoopClosing.h"
 #include "ORBmatcher.h"
 #include "Optimizer.h"
+#include "image_opencv.h"
 
-#include<mutex>
+#include <mutex>
+#include <darknet.h>
+#include <pcl_conversions/pcl_conversions.h>
+#include <pcl/PCLPointCloud2.h>
+// #include <pangolin/pangolin.h>
 
 namespace ORB_SLAM2
 {
 
-LocalMapping::LocalMapping(Map *pMap, const float bMonocular):
+LocalMapping::LocalMapping(Map *pMap, const float bMonocular, std::list<Label> *lQueue)://, MapDrawer *pMapDrawer):
     mbMonocular(bMonocular), mbResetRequested(false), mbFinishRequested(false), mbFinished(true), mpMap(pMap),
-    mbAbortBA(false), mbStopped(false), mbStopRequested(false), mbNotStop(false), mbAcceptKeyFrames(true)
+    mbAbortBA(false), mbStopped(false), mbStopRequested(false), mbNotStop(false), mbAcceptKeyFrames(true), LabelQueue(lQueue)//, mpMapDrawer(pMapDrawer)
 {
+    //./darknet detector test cfg/coco.data cfg/yolov3.cfg yolov3.weights jpg
+    //.5, .5, 0, 0
+    // image **alphabet = load_alphabet();
+    //move used files to ORB_SLAM project?
+    mylist *options = read_data_cfg((char*)"yolo/coco.data");
+    char *name_list = option_find_str(options, (char*)"names", (char*)"data/names.list");
+    names = get_labels(name_list);
+    // image **alphabet = load_alphabet();
+    net = load_network((char*)"yolo/yolov3.cfg", (char*)"yolo/yolov3.weights", 0);
+    set_batch_network(net,1);
+    keyCount = 0;
+    // l = net->layers[net->n-1];
+    //make net a class var for use in processkeyframe
+    //in process keyframe
+    //image sized = letterbox_image(im, net->w, net->h);
+    //float *X = size.data;
+    //network_predict(net,X);
+    //int nboxes =  0
+    //detection *dets = get_network_boxes(net, im.w, im.h, thresh, hier_thresh, 0, 1, &nboxes);
+    //export centers of bounding boxes along with labels to map drawer
 }
 
 void LocalMapping::SetLoopCloser(LoopClosing* pLoopCloser)
@@ -132,6 +157,85 @@ void LocalMapping::ProcessNewKeyFrame()
         mpCurrentKeyFrame = mlNewKeyFrames.front();
         mlNewKeyFrames.pop_front();
     }
+
+    //run new keyframe through yolo
+    //need to do this or can just run the mat through yolo?
+    // imwrite("keyframe.jpg",mpCurrentKeyFrame->imGray);
+    //Image cv2::mat_to_image(Mat)
+    // cv::imshow("keyframe", mpCurrentKeyFrame->imGrayMat);
+    // cv::imwrite("keyframe.jpg", mpCurrentKeyFrame->imGrayMat);
+
+    // cout <<"here1" << endl;
+
+ ////   // image im = mat_to_image(mpCurrentKeyFrame->imRGBMat);
+    // image im = load_image_cv((char*)"keyframe.jpg",3);
+    // cv::cvtColor(mpCurrentKeyFrame->imGrayMat, out, cv::COLOR_GRAY2BGR)
+    // cout << im.c << endl;
+//    image sized = letterbox_image(im, net->w, net->h);
+//    float *X = sized.data;
+    // cout << net->w << endl;
+////    // network_predict_image(net,im);
+//    network_predict(net,X);
+    // network_predict_image(net,im);
+    // int nboxes =  0;
+    // cout <<"here4" << endl;
+    // detection *dets = get_network_boxes(net, im.w, im.h, .5, .5, 0, 1, &nboxes);
+    // cout <<"here5" << endl;
+    // cout << "x,y,w,h: " << dets->bbox.x << ", " << dets->bbox.y << ", " << dets->bbox.w << ", " << dets->bbox.h << endl;
+    //export centers of bounding boxes along with labels to map drawer
+    // cout << mpCurrentKeyFrame->msgPC->height << endl;
+    pcl::PCLPointCloud2 pcl_pc2;
+    pcl_conversions::toPCL(*(mpCurrentKeyFrame->msgPC), pcl_pc2);
+    pcl::PointCloud<pcl::PointXYZ>::Ptr temp_cloud(new pcl::PointCloud<pcl::PointXYZ>);
+    pcl::fromPCLPointCloud2(pcl_pc2,*temp_cloud);
+    // pcl::fromROSMsg(mpCurrentKeyFrame->msgPC, )
+    sensor_msgs::PointCloud2ConstPtr pc = mpCurrentKeyFrame->msgPC;
+    cout << keyCount << endl;
+    if (keyCount > 0) {
+        image im = mat_to_image(mpCurrentKeyFrame->imRGBMat);
+        network_predict_image(net,im);
+        int nboxes = 0;
+        detection *dets = get_network_boxes(net, im.w, im.h, .5, .5, 0, 1, &nboxes);
+        // cout << "x,y,w,h: " << dets[1].bbox.x << ", " << dets->bbox.y << ", " << dets->bbox.w << ", " << dets->bbox.h << endl;
+        // cout << "num detections: " << nboxes << endl;
+        for (int i = 0; i < nboxes; ++i) {
+            box b = dets[i].bbox;
+            int left  = (b.x-b.w/2.)*im.w;
+            int right = (b.x+b.w/2.)*im.w;
+            int top   = (b.y-b.h/2.)*im.h;
+            int bot   = (b.y+b.h/2.)*im.h;
+
+            if(left < 0) left = 0;
+            if(right > im.w-1) right = im.w-1;
+            if(top < 0) top = 0;
+            if(bot > im.h-1) bot = im.h-1;
+            // cout << "box coord for " << i << ": " << ((top+bot)/2) << "," << ((left+right)/2) << endl;
+            // cout << "num classes: " << l.classes << endl;
+            // cout << "num classes: " << dets[i].classes << endl;
+            // unique_lock<mutex> lock(mMutexLabelQueue);
+            for (int j = 0; j < dets[i].classes; ++j) {
+                if (dets[i].prob[j] > 0.75) {
+                    int row = (top+bot)/2;
+                    int col = (left+right)/2;
+                    // int pcIndex = row * im.w + col;
+                    // cout << "class: " << names[j] << ", prob: " << dets[i].prob[j] << endl;
+                    // cout << "Prepush: " << LabelQueue->size() << endl;
+                    if (names[j] != (char*)"person")
+                        LabelQueue->push_back({names[j], temp_cloud->at(col,row).x,temp_cloud->at(col,row).y,temp_cloud->at(col,row).z});
+                    // cout << "Postpush: " << LabelQueue->size() << endl;
+                    // cout << names[j] << " at pixel " << row << "," << col << " with prob " << dets[i].prob[j] << " corresponds to pointcloud coord " << temp_cloud->at(col,row).x << "," << temp_cloud->at(col,row).y << "," << temp_cloud->at(col,row).z << endl;
+                    // mpMapDrawer->DrawLabel(names[j], temp_cloud->at(col,row).x, temp_cloud->at(col,row).y, temp_cloud->at(col,row).z);
+
+                }
+            // unique_lock<mutex> unlock(mMutexLabelQueue);
+                //write function in MapDrawer to draw labels in space, pass mapdrawer object to this class
+                //like in viewer, for detected objects call written func with class label and coord
+                //maybe make threshhold very high to prevent exploding number of labels
+            }
+        }
+        // free_detections(dets, nboxes);
+    }
+    keyCount++;
 
     // Compute Bags of Words structures
     mpCurrentKeyFrame->ComputeBoW();
@@ -728,6 +832,8 @@ void LocalMapping::ResetIfRequested()
         mlNewKeyFrames.clear();
         mlpRecentAddedMapPoints.clear();
         mbResetRequested=false;
+        keyCount = 0;
+        LabelQueue->clear();
     }
 }
 
@@ -756,5 +862,33 @@ bool LocalMapping::isFinished()
     unique_lock<mutex> lock(mMutexFinish);
     return mbFinished;
 }
+
+// image ipl_to_image(IplImage* src)
+// {
+//     int h = src->height;
+//     int w = src->width;
+//     int c = src->nChannels;
+//     image im = make_image(w, h, c);
+//     unsigned char *data = (unsigned char *)src->imageData;
+//     int step = src->widthStep;
+//     int i, j, k;
+
+//     for(i = 0; i < h; ++i){
+//         for(k= 0; k < c; ++k){
+//             for(j = 0; j < w; ++j){
+//                 im.data[k*w*h + i*w + j] = data[i*step + j*c + k]/255.;
+//             }
+//         }
+//     }
+//     return im;
+// }
+
+// image mat_to_image(cv::Mat m)
+// {
+//     IplImage ipl = m;
+//     image im = ipl_to_image(&ipl);
+//     rgbgr_image(im);
+//     return im;
+// }
 
 } //namespace ORB_SLAM

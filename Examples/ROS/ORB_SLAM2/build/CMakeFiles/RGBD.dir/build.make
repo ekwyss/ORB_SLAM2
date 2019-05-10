@@ -117,15 +117,15 @@ CMakeFiles/RGBD.dir/src/ros_rgbd.cc.o: /opt/ros/kinetic/share/image_transport/pa
 CMakeFiles/RGBD.dir/src/ros_rgbd.cc.o: /opt/ros/kinetic/share/opencv3/package.xml
 CMakeFiles/RGBD.dir/src/ros_rgbd.cc.o: /opt/ros/kinetic/share/cv_bridge/package.xml
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/RGBD.dir/src/ros_rgbd.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RGBD.dir/src/ros_rgbd.cc.o -c /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_rgbd.cc
+	/usr/bin/g++-6   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RGBD.dir/src/ros_rgbd.cc.o -c /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_rgbd.cc
 
 CMakeFiles/RGBD.dir/src/ros_rgbd.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RGBD.dir/src/ros_rgbd.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_rgbd.cc > CMakeFiles/RGBD.dir/src/ros_rgbd.cc.i
+	/usr/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_rgbd.cc > CMakeFiles/RGBD.dir/src/ros_rgbd.cc.i
 
 CMakeFiles/RGBD.dir/src/ros_rgbd.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RGBD.dir/src/ros_rgbd.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_rgbd.cc -o CMakeFiles/RGBD.dir/src/ros_rgbd.cc.s
+	/usr/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_rgbd.cc -o CMakeFiles/RGBD.dir/src/ros_rgbd.cc.s
 
 CMakeFiles/RGBD.dir/src/ros_rgbd.cc.o.requires:
 
@@ -173,10 +173,11 @@ RGBD_EXTERNAL_OBJECTS =
 ../RGBD: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_ximgproc3.so.3.3.1
 ../RGBD: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_xobjdetect3.so.3.3.1
 ../RGBD: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_xphoto3.so.3.3.1
-../RGBD: /home/eric/catkin_ws/src/Pangolin/build/src/libpangolin.so
+../RGBD: /home/eric/catkin_ws/build_isolated/pangolin/devel/src/libpangolin.so
 ../RGBD: ../../../../Thirdparty/DBoW2/lib/libDBoW2.so
 ../RGBD: ../../../../Thirdparty/g2o/lib/libg2o.so
 ../RGBD: ../../../../lib/libORB_SLAM2.so
+../RGBD: /home/eric/catkin_ws/src/dependencies/darknet/libdarknet.so
 ../RGBD: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_shape3.so.3.3.1
 ../RGBD: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_photo3.so.3.3.1
 ../RGBD: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_datasets3.so.3.3.1

@@ -1,13 +1,13 @@
 %YAML:1.0
 ---
 mappointsFile: "myFirstMap.mappoints"
-nMappoints: 1624
+nMappoints: 3744
 keyframesFile: "myFirstMap.keyframes"
-nKeyframes: 30
+nKeyframes: 48
 featuresFile: "myFirstMap.features"
-nFeatures: 32162
+nFeatures: 97106
 Options: 2
 Options descriptions: [ FEATURES_FILE_NOT_DELIMITED ]
 cameraMatrices:
-   - { fx:5.1730639648437500e+02, fy:5.1646923828125000e+02,
-       cx:3.1864303588867188e+02, cy:2.5531399536132812e+02 }
+   - { fx:5.7034222412109375e+02, fy:5.7034222412109375e+02,
+       cx:3.1950000000000000e+02, cy:2.3950000000000000e+02 }

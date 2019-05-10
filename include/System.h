@@ -35,6 +35,8 @@
 #include "KeyFrameDatabase.h"
 #include "ORBVocabulary.h"
 #include "Viewer.h"
+#include "sensor_msgs/PointCloud2.h"
+
 
 namespace ORB_SLAM2
 {
@@ -70,6 +72,7 @@ public:
     // Input image: RGB (CV_8UC3) or grayscale (CV_8U). RGB is converted to grayscale.
     // Input depthmap: Float (CV_32F).
     // Returns the camera pose (empty if tracking fails).
+    cv::Mat TrackRGBD(const cv::Mat &im, const cv::Mat &depthmap, const double &timestamp, const sensor_msgs::PointCloud2ConstPtr &msgPC);
     cv::Mat TrackRGBD(const cv::Mat &im, const cv::Mat &depthmap, const double &timestamp);
 
     // Proccess the given monocular frame

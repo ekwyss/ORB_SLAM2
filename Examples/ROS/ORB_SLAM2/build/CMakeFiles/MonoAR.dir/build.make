@@ -117,15 +117,15 @@ CMakeFiles/MonoAR.dir/src/AR/ros_mono_ar.cc.o: /opt/ros/kinetic/share/image_tran
 CMakeFiles/MonoAR.dir/src/AR/ros_mono_ar.cc.o: /opt/ros/kinetic/share/opencv3/package.xml
 CMakeFiles/MonoAR.dir/src/AR/ros_mono_ar.cc.o: /opt/ros/kinetic/share/cv_bridge/package.xml
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/MonoAR.dir/src/AR/ros_mono_ar.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MonoAR.dir/src/AR/ros_mono_ar.cc.o -c /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/AR/ros_mono_ar.cc
+	/usr/bin/g++-6   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MonoAR.dir/src/AR/ros_mono_ar.cc.o -c /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/AR/ros_mono_ar.cc
 
 CMakeFiles/MonoAR.dir/src/AR/ros_mono_ar.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MonoAR.dir/src/AR/ros_mono_ar.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/AR/ros_mono_ar.cc > CMakeFiles/MonoAR.dir/src/AR/ros_mono_ar.cc.i
+	/usr/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/AR/ros_mono_ar.cc > CMakeFiles/MonoAR.dir/src/AR/ros_mono_ar.cc.i
 
 CMakeFiles/MonoAR.dir/src/AR/ros_mono_ar.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MonoAR.dir/src/AR/ros_mono_ar.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/AR/ros_mono_ar.cc -o CMakeFiles/MonoAR.dir/src/AR/ros_mono_ar.cc.s
+	/usr/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/AR/ros_mono_ar.cc -o CMakeFiles/MonoAR.dir/src/AR/ros_mono_ar.cc.s
 
 CMakeFiles/MonoAR.dir/src/AR/ros_mono_ar.cc.o.requires:
 
@@ -198,15 +198,15 @@ CMakeFiles/MonoAR.dir/src/AR/ViewerAR.cc.o: /opt/ros/kinetic/share/image_transpo
 CMakeFiles/MonoAR.dir/src/AR/ViewerAR.cc.o: /opt/ros/kinetic/share/opencv3/package.xml
 CMakeFiles/MonoAR.dir/src/AR/ViewerAR.cc.o: /opt/ros/kinetic/share/cv_bridge/package.xml
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/MonoAR.dir/src/AR/ViewerAR.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MonoAR.dir/src/AR/ViewerAR.cc.o -c /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/AR/ViewerAR.cc
+	/usr/bin/g++-6   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MonoAR.dir/src/AR/ViewerAR.cc.o -c /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/AR/ViewerAR.cc
 
 CMakeFiles/MonoAR.dir/src/AR/ViewerAR.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MonoAR.dir/src/AR/ViewerAR.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/AR/ViewerAR.cc > CMakeFiles/MonoAR.dir/src/AR/ViewerAR.cc.i
+	/usr/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/AR/ViewerAR.cc > CMakeFiles/MonoAR.dir/src/AR/ViewerAR.cc.i
 
 CMakeFiles/MonoAR.dir/src/AR/ViewerAR.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MonoAR.dir/src/AR/ViewerAR.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/AR/ViewerAR.cc -o CMakeFiles/MonoAR.dir/src/AR/ViewerAR.cc.s
+	/usr/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/AR/ViewerAR.cc -o CMakeFiles/MonoAR.dir/src/AR/ViewerAR.cc.s
 
 CMakeFiles/MonoAR.dir/src/AR/ViewerAR.cc.o.requires:
 
@@ -256,7 +256,7 @@ MonoAR_EXTERNAL_OBJECTS =
 ../MonoAR: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_ximgproc3.so.3.3.1
 ../MonoAR: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_xobjdetect3.so.3.3.1
 ../MonoAR: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_xphoto3.so.3.3.1
-../MonoAR: /home/eric/catkin_ws/src/Pangolin/build/src/libpangolin.so
+../MonoAR: /home/eric/catkin_ws/build_isolated/pangolin/devel/src/libpangolin.so
 ../MonoAR: ../../../../Thirdparty/DBoW2/lib/libDBoW2.so
 ../MonoAR: ../../../../Thirdparty/g2o/lib/libg2o.so
 ../MonoAR: ../../../../lib/libORB_SLAM2.so

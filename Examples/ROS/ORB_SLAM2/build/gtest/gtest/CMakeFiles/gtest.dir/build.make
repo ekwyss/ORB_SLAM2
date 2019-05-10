@@ -60,15 +60,15 @@ include gtest/gtest/CMakeFiles/gtest.dir/flags.make
 gtest/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o: gtest/gtest/CMakeFiles/gtest.dir/flags.make
 gtest/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o: /usr/src/gtest/src/gtest-all.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object gtest/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o"
-	cd /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/gtest && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gtest.dir/src/gtest-all.cc.o -c /usr/src/gtest/src/gtest-all.cc
+	cd /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/gtest && /usr/bin/g++-6   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gtest.dir/src/gtest-all.cc.o -c /usr/src/gtest/src/gtest-all.cc
 
 gtest/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gtest.dir/src/gtest-all.cc.i"
-	cd /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/gtest && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /usr/src/gtest/src/gtest-all.cc > CMakeFiles/gtest.dir/src/gtest-all.cc.i
+	cd /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/gtest && /usr/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /usr/src/gtest/src/gtest-all.cc > CMakeFiles/gtest.dir/src/gtest-all.cc.i
 
 gtest/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gtest.dir/src/gtest-all.cc.s"
-	cd /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/gtest && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /usr/src/gtest/src/gtest-all.cc -o CMakeFiles/gtest.dir/src/gtest-all.cc.s
+	cd /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/gtest && /usr/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /usr/src/gtest/src/gtest-all.cc -o CMakeFiles/gtest.dir/src/gtest-all.cc.s
 
 gtest/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o.requires:
 

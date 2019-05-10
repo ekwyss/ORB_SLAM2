@@ -59,9 +59,6 @@ int main(int argc, char **argv)
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
     ORB_SLAM2::System SLAM(argv[1],argv[2],ORB_SLAM2::System::MONOCULAR,true);
     ORB_SLAM2::Osmap osmap = ORB_SLAM2::Osmap(SLAM);
-    cout << "Give time for SLAM to initialize..." << endl;
-    getchar();
-    osmap.mapLoad("myFirstMap.yaml");
 
     ImageGrabber igb(&SLAM);
 
@@ -70,12 +67,21 @@ int main(int argc, char **argv)
 
     ros::spin();
 
+    // cout <<"wait for SLAM to initialize"<<endl;
+    // getchar();
+    // osmap.mapLoad("myFirstMap.yaml");
+    // cout << "Give time for map to load..." << endl;
+    // getchar();
+    
     // Stop all threads
     SLAM.Shutdown();
 
     // Save camera trajectory
     SLAM.SaveKeyFrameTrajectoryTUM("KeyFrameTrajectory.txt");
-
+    // cout << "saving map to filename: myFirstMap" << endl;
+    // osmap.mapSave("myFirstMap");
+    // cout << "Give time for map to save..." << endl;
+    // getchar();
     ros::shutdown();
 
     return 0;

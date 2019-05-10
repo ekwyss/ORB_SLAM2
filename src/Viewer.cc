@@ -26,9 +26,9 @@
 namespace ORB_SLAM2
 {
 
-Viewer::Viewer(System* pSystem, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer, Tracking *pTracking, const string &strSettingPath):
+Viewer::Viewer(System* pSystem, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer, Tracking *pTracking, const string &strSettingPath, std::list<Label> *lQueue):
     mpSystem(pSystem), mpFrameDrawer(pFrameDrawer),mpMapDrawer(pMapDrawer), mpTracker(pTracking),
-    mbFinishRequested(false), mbFinished(true), mbStopped(true), mbStopRequested(false)
+    mbFinishRequested(false), mbFinished(true), mbStopped(true), mbStopRequested(false), LabelQueue(lQueue)
 {
     cv::FileStorage fSettings(strSettingPath, cv::FileStorage::READ);
 
@@ -131,6 +131,10 @@ void Viewer::Run()
             mpMapDrawer->DrawKeyFrames(menuShowKeyFrames,menuShowGraph);
         if(menuShowPoints)
             mpMapDrawer->DrawMapPoints();
+
+        // unique_lock<mutex> lock(mMutexLabelQueue);
+        mpMapDrawer->DrawLabels(LabelQueue);
+        // unique_lock<mutex> unlock(mMutexLabelQueue);
 
         pangolin::FinishFrame();
 

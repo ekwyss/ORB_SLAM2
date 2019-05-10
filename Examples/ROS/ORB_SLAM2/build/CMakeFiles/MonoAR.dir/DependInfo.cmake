@@ -25,8 +25,9 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../../../.."
   "../../../../include"
   "/home/eric/catkin_ws/src/Pangolin/include"
-  "/home/eric/catkin_ws/src/Pangolin/build/src/include"
+  "/home/eric/catkin_ws/build_isolated/pangolin/devel/src/include"
   "/usr/include/eigen3"
+  "/home/eric/catkin_ws/src/dependencies/darknet/include"
   )
 
 # Targets to which this target links.

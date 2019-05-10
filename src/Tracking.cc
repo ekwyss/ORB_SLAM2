@@ -204,9 +204,41 @@ cv::Mat Tracking::GrabImageStereo(const cv::Mat &imRectLeft, const cv::Mat &imRe
 }
 
 
+cv::Mat Tracking::GrabImageRGBD(const cv::Mat &imRGB,const cv::Mat &imD, const double &timestamp, const sensor_msgs::PointCloud2ConstPtr& msgPC)
+{
+    mImGray = imRGB;
+    cv::Mat mImRGB = cv::Mat(imRGB);
+    cv::Mat imDepth = imD;
+
+    if(mImGray.channels()==3)
+    {
+        if(mbRGB)
+            cvtColor(mImGray,mImGray,CV_RGB2GRAY);
+        else
+            cvtColor(mImGray,mImGray,CV_BGR2GRAY);
+    }
+    else if(mImGray.channels()==4)
+    {
+        if(mbRGB)
+            cvtColor(mImGray,mImGray,CV_RGBA2GRAY);
+        else
+            cvtColor(mImGray,mImGray,CV_BGRA2GRAY);
+    }
+
+    if((fabs(mDepthMapFactor-1.0f)>1e-5) || imDepth.type()!=CV_32F)
+        imDepth.convertTo(imDepth,CV_32F,mDepthMapFactor);
+
+    mCurrentFrame = Frame(mImRGB,msgPC,mImGray,imDepth,timestamp,mpORBextractorLeft,mpORBVocabulary,mK,mDistCoef,mbf,mThDepth);
+
+    Track();
+
+    return mCurrentFrame.mTcw.clone();
+}
+
 cv::Mat Tracking::GrabImageRGBD(const cv::Mat &imRGB,const cv::Mat &imD, const double &timestamp)
 {
     mImGray = imRGB;
+    // cv::Mat mImRGB = cv::Mat(imRGB);
     cv::Mat imDepth = imD;
 
     if(mImGray.channels()==3)
@@ -233,7 +265,6 @@ cv::Mat Tracking::GrabImageRGBD(const cv::Mat &imRGB,const cv::Mat &imD, const d
 
     return mCurrentFrame.mTcw.clone();
 }
-
 
 cv::Mat Tracking::GrabImageMonocular(const cv::Mat &im, const double &timestamp)
 {
@@ -427,6 +458,15 @@ void Tracking::Track()
                 mLastFrame.GetRotationInverse().copyTo(LastTwc.rowRange(0,3).colRange(0,3));
                 mLastFrame.GetCameraCenter().copyTo(LastTwc.rowRange(0,3).col(3));
                 mVelocity = mCurrentFrame.mTcw*LastTwc;
+                //Use mVelocity as 3D pose from visual odometry (publish to vo)
+                //get Odometry from odom topic (currently publishes)
+                //get Imu data from mobile_/base/sensors/imu_data, remap to imu_data
+                //cout << "mVelocity: " << mVelocity << endl;
+                //e.g.   // [1, 0.00011665814, 9.2980845e-06, 0.0006347773;
+                         // -0.0001166587, 1, 5.9986545e-05, -0.00029936462;
+                         // -9.2910705e-06, -5.998768e-05, 1, -0.0012507318;
+                         // 0, 0, 0, 1]
+
             }
             else
                 mVelocity = cv::Mat();

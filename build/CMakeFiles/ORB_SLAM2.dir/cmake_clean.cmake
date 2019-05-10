@@ -20,6 +20,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/ORB_SLAM2.dir/src/Viewer.cc.o"
   "CMakeFiles/ORB_SLAM2.dir/src/osmap.pb.cc.o"
   "CMakeFiles/ORB_SLAM2.dir/src/Osmap.cpp.o"
+  "CMakeFiles/ORB_SLAM2.dir/src/image_opencv.cpp.o"
   "../lib/libORB_SLAM2.pdb"
   "../lib/libORB_SLAM2.so"
 )

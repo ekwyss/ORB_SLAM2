@@ -31,6 +31,8 @@
 #include "ORBextractor.h"
 
 #include <opencv2/opencv.hpp>
+#include "sensor_msgs/PointCloud2.h"
+
 
 namespace ORB_SLAM2
 {
@@ -53,6 +55,7 @@ public:
 
     // Constructor for RGB-D cameras.
     Frame(const cv::Mat &imGray, const cv::Mat &imDepth, const double &timeStamp, ORBextractor* extractor,ORBVocabulary* voc, cv::Mat &K, cv::Mat &distCoef, const float &bf, const float &thDepth);
+    Frame(const cv::Mat &imRGB, const sensor_msgs::PointCloud2ConstPtr &msgPC, const cv::Mat &imGray, const cv::Mat &imDepth, const double &timeStamp, ORBextractor* extractor,ORBVocabulary* voc, cv::Mat &K, cv::Mat &distCoef, const float &bf, const float &thDepth);
 
     // Constructor for Monocular cameras.
     Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extractor,ORBVocabulary* voc, cv::Mat &K, cv::Mat &distCoef, const float &bf, const float &thDepth);
@@ -162,6 +165,9 @@ public:
 
     // Camera pose.
     cv::Mat mTcw;
+    //cv mat of image for running potential keyframe through yolo
+    cv::Mat imRGBMat;
+    sensor_msgs::PointCloud2ConstPtr pcPtr;
 
     // Current and Next Frame id.
     static long unsigned int nNextId;

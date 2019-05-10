@@ -45,7 +45,7 @@ CMAKE_BUILD_TYPE:STRING=
 CMAKE_COLOR_MAKEFILE:BOOL=ON
 
 //CXX compiler
-CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++
+CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++-6
 
 //Flags used by the compiler during all build types.
 CMAKE_CXX_FLAGS:STRING=
@@ -249,7 +249,7 @@ PYTHON_EXECUTABLE:FILEPATH=/usr/bin/python
 PYTHON_VERSION:STRING=
 
 //The directory containing a CMake configuration file for Pangolin.
-Pangolin_DIR:PATH=/home/eric/catkin_ws/src/Pangolin/build/src
+Pangolin_DIR:PATH=/home/eric/catkin_ws/build_isolated/pangolin/devel/src
 
 //Value Computed by CMake
 Project_BINARY_DIR:STATIC=/home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build
@@ -279,7 +279,7 @@ UBUNTU_XENIAL:BOOL=TRUE
 USERCONFIG:FILEPATH=USERCONFIG-NOTFOUND
 
 //Path to a file.
-_file_name:FILEPATH=/home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_rgbd.cc
+_file_name:FILEPATH=/home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/PCLlistener.cc
 
 //Path to a file.
 _gmock_INCLUDES:FILEPATH=/usr/include/gmock/gmock.h

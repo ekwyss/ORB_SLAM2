@@ -30,6 +30,8 @@
 #include "KeyFrameDatabase.h"
 
 #include <mutex>
+#include "sensor_msgs/PointCloud2.h"
+
 
 
 namespace ORB_SLAM2
@@ -187,6 +189,9 @@ public:
     const int mnMaxX;
     const int mnMaxY;
     const cv::Mat mK;
+
+    const cv::Mat imRGBMat;
+    const sensor_msgs::PointCloud2ConstPtr msgPC;
 
 
     // The following variables need to be accessed trough a mutex to be thread safe.

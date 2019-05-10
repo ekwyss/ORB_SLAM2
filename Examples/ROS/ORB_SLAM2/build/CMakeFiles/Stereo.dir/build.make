@@ -117,15 +117,15 @@ CMakeFiles/Stereo.dir/src/ros_stereo.cc.o: /opt/ros/kinetic/share/image_transpor
 CMakeFiles/Stereo.dir/src/ros_stereo.cc.o: /opt/ros/kinetic/share/opencv3/package.xml
 CMakeFiles/Stereo.dir/src/ros_stereo.cc.o: /opt/ros/kinetic/share/cv_bridge/package.xml
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Stereo.dir/src/ros_stereo.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Stereo.dir/src/ros_stereo.cc.o -c /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_stereo.cc
+	/usr/bin/g++-6   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Stereo.dir/src/ros_stereo.cc.o -c /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_stereo.cc
 
 CMakeFiles/Stereo.dir/src/ros_stereo.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Stereo.dir/src/ros_stereo.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_stereo.cc > CMakeFiles/Stereo.dir/src/ros_stereo.cc.i
+	/usr/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_stereo.cc > CMakeFiles/Stereo.dir/src/ros_stereo.cc.i
 
 CMakeFiles/Stereo.dir/src/ros_stereo.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Stereo.dir/src/ros_stereo.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_stereo.cc -o CMakeFiles/Stereo.dir/src/ros_stereo.cc.s
+	/usr/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_stereo.cc -o CMakeFiles/Stereo.dir/src/ros_stereo.cc.s
 
 CMakeFiles/Stereo.dir/src/ros_stereo.cc.o.requires:
 
@@ -173,7 +173,7 @@ Stereo_EXTERNAL_OBJECTS =
 ../Stereo: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_ximgproc3.so.3.3.1
 ../Stereo: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_xobjdetect3.so.3.3.1
 ../Stereo: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_xphoto3.so.3.3.1
-../Stereo: /home/eric/catkin_ws/src/Pangolin/build/src/libpangolin.so
+../Stereo: /home/eric/catkin_ws/build_isolated/pangolin/devel/src/libpangolin.so
 ../Stereo: ../../../../Thirdparty/DBoW2/lib/libDBoW2.so
 ../Stereo: ../../../../Thirdparty/g2o/lib/libg2o.so
 ../Stereo: ../../../../lib/libORB_SLAM2.so

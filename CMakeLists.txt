@@ -39,6 +39,7 @@ endif()
 find_package(Eigen3 3.1.0 REQUIRED)
 find_package(Pangolin REQUIRED)
 find_package(Protobuf REQUIRED)
+find_package(PCL REQUIRED)
 
 include_directories(
 ${PROJECT_SOURCE_DIR}
@@ -47,6 +48,8 @@ ${EIGEN3_INCLUDE_DIR}
 ${Pangolin_INCLUDE_DIRS}
 ${CMAKE_CURRENT_BINARY_DIR}
 ${PROTOBUF_INCLUDE_DIR}
+/opt/ros/kinetic/include
+${PCL_INCLUDE_DIRS}
 )
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
@@ -73,6 +76,17 @@ src/Initializer.cc
 src/Viewer.cc
 src/osmap.pb.cc
 src/Osmap.cpp
+src/image_opencv.cpp
+)
+
+set(DARKNET_PATH /home/eric/catkin_ws/src/dependencies/darknet)
+set(DARKNET_LIB libdarknet)
+include_directories(${DARKNET_PATH}/include)
+add_library(${DARKNET_LIB} SHARED IMPORTED)
+set_property(
+   TARGET ${DARKNET_LIB}
+   PROPERTY IMPORTED_LOCATION
+   "${DARKNET_PATH}/libdarknet.so"
 )
 
 target_link_libraries(${PROJECT_NAME}
@@ -83,6 +97,8 @@ ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/lib/libDBoW2.so
 ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
 ${PROTOBUF_LIBRARIES}
 /usr/local/lib/libprotobuf.a
+${DARKNET_LIB}
+${PCL_LIBRARIES}
 )
 
 # Build examples
@@ -117,4 +133,3 @@ target_link_libraries(mono_kitti ${PROJECT_NAME})
 add_executable(mono_euroc
 Examples/Monocular/mono_euroc.cc)
 target_link_libraries(mono_euroc ${PROJECT_NAME})
-

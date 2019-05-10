@@ -31,6 +31,13 @@
 namespace ORB_SLAM2
 {
 
+struct Label{
+    string labelStr;
+    float x;
+    float y;
+    float z;
+};
+
 class MapDrawer
 {
 public:
@@ -44,6 +51,8 @@ public:
     void SetCurrentCameraPose(const cv::Mat &Tcw);
     void SetReferenceKeyFrame(KeyFrame *pKF);
     void GetCurrentOpenGLCameraMatrix(pangolin::OpenGlMatrix &M);
+    void DrawLabels(std::list<Label> *LabelQueue);
+
 
 private:
 

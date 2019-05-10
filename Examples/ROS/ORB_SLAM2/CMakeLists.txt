@@ -96,3 +96,19 @@ target_link_libraries(RGBD
 ${LIBS}
 )
 
+rosbuild_add_executable(PCLlistenernode src/PCLlistener.cc)
+target_link_libraries(PCLlistenernode ${catkin_LIBRARIES})
+add_dependencies(PCLlistenernode sensor_msgs)
+
+set(DARKNET_PATH /home/eric/catkin_ws/src/dependencies/darknet)
+set(DARKNET_LIB libdarknet)
+include_directories(${DARKNET_PATH}/include)
+add_library(${DARKNET_LIB} SHARED IMPORTED
+${DARKNET_PATH}/examples/detector.c
+)
+set_property(
+   TARGET ${DARKNET_LIB}
+   PROPERTY IMPORTED_LOCATION
+   "${DARKNET_PATH}/libdarknet.so"
+)
+target_link_libraries(RGBD ${DARKNET_LIB})

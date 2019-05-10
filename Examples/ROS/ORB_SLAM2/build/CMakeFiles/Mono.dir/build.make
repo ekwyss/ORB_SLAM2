@@ -117,15 +117,15 @@ CMakeFiles/Mono.dir/src/ros_mono.cc.o: /opt/ros/kinetic/share/image_transport/pa
 CMakeFiles/Mono.dir/src/ros_mono.cc.o: /opt/ros/kinetic/share/opencv3/package.xml
 CMakeFiles/Mono.dir/src/ros_mono.cc.o: /opt/ros/kinetic/share/cv_bridge/package.xml
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Mono.dir/src/ros_mono.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Mono.dir/src/ros_mono.cc.o -c /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_mono.cc
+	/usr/bin/g++-6   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Mono.dir/src/ros_mono.cc.o -c /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_mono.cc
 
 CMakeFiles/Mono.dir/src/ros_mono.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Mono.dir/src/ros_mono.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_mono.cc > CMakeFiles/Mono.dir/src/ros_mono.cc.i
+	/usr/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_mono.cc > CMakeFiles/Mono.dir/src/ros_mono.cc.i
 
 CMakeFiles/Mono.dir/src/ros_mono.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Mono.dir/src/ros_mono.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_mono.cc -o CMakeFiles/Mono.dir/src/ros_mono.cc.s
+	/usr/bin/g++-6  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_mono.cc -o CMakeFiles/Mono.dir/src/ros_mono.cc.s
 
 CMakeFiles/Mono.dir/src/ros_mono.cc.o.requires:
 
@@ -173,7 +173,7 @@ Mono_EXTERNAL_OBJECTS =
 ../Mono: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_ximgproc3.so.3.3.1
 ../Mono: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_xobjdetect3.so.3.3.1
 ../Mono: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_xphoto3.so.3.3.1
-../Mono: /home/eric/catkin_ws/src/Pangolin/build/src/libpangolin.so
+../Mono: /home/eric/catkin_ws/build_isolated/pangolin/devel/src/libpangolin.so
 ../Mono: ../../../../Thirdparty/DBoW2/lib/libDBoW2.so
 ../Mono: ../../../../Thirdparty/g2o/lib/libg2o.so
 ../Mono: ../../../../lib/libORB_SLAM2.so

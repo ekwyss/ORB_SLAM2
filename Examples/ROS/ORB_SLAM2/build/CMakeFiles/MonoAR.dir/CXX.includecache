@@ -6,6 +6,8 @@
 
 #IncludeRegexTransform: 
 
+/home/eric/catkin_ws/build_isolated/pangolin/devel/src/include/pangolin/config.h
+
 /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/AR/ViewerAR.cc
 ViewerAR.h
 /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/AR/ViewerAR.h
@@ -51,8 +53,6 @@ opencv2/imgproc/imgproc.hpp
 /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/include/System.h
 ViewerAR.h
 /home/eric/catkin_ws/src/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/AR/ViewerAR.h
-
-/home/eric/catkin_ws/src/Pangolin/build/src/include/pangolin/config.h
 
 /home/eric/catkin_ws/src/Pangolin/include/pangolin/compat/type_traits.h
 pangolin/platform.h

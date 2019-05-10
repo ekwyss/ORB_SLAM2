@@ -26,8 +26,13 @@
 #include "LoopClosing.h"
 #include "Tracking.h"
 #include "KeyFrameDatabase.h"
+#include "MapDrawer.h"
 
 #include <mutex>
+#include <darknet.h>
+#include <opencv2/opencv.hpp>
+#include "sensor_msgs/PointCloud2.h"
+
 
 
 namespace ORB_SLAM2
@@ -40,7 +45,7 @@ class Map;
 class LocalMapping
 {
 public:
-    LocalMapping(Map* pMap, const float bMonocular);
+    LocalMapping(Map* pMap, const float bMonocular, std::list<Label> *lQueue);//, MapDrawer* mpMapDrawer);
 
     void SetLoopCloser(LoopClosing* pLoopCloser);
 
@@ -71,6 +76,12 @@ public:
         unique_lock<std::mutex> lock(mMutexNewKFs);
         return mlNewKeyFrames.size();
     }
+
+    network* net;
+    int keyCount;
+    char** names;
+    // layer l;
+
 
 protected:
 
@@ -121,6 +132,10 @@ protected:
 
     bool mbAcceptKeyFrames;
     std::mutex mMutexAccept;
+    // MapDrawer* mpMapDrawer;
+    std::list<Label> *LabelQueue;
+    std::mutex mMutexLabelQueue;
+
 };
 
 } //namespace ORB_SLAM
