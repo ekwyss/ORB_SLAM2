@@ -1,3 +1,14 @@
+Install project and dependencies:
+ - yolo: follow instructions at https://pjreddie.com/darknet/yolo/
+ - ORBSLAM2: follow instructions of original ORBSLAM2 README bellow
+ - OsMap: follow instructions at https://github.com/AlejandroSilvestri/osmap
+
+To run:
+  -roslaunch turtlebot_bringup minimal.launch
+  -roslaunch turtlebot_bringup 3dsensor.launch
+  -rosrun ORB_SLAM2 RGBD Vocabulary/ORBvoc.txt Examples/RGB-D/Tbot2Cam.yaml
+  -(optional) roslaunch turtlebot_teleop keyboard_teleop.launch
+
 # ORB-SLAM2
 **Authors:** [Raul Mur-Artal](http://webdiis.unizar.es/~raulmur/), [Juan D. Tardos](http://webdiis.unizar.es/~jdtardos/), [J. M. M. Montiel](http://webdiis.unizar.es/~josemari/) and [Dorian Galvez-Lopez](http://doriangalvez.com/) ([DBoW2](https://github.com/dorian3d/DBoW2))
 
